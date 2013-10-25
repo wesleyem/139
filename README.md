@@ -70,5 +70,8 @@ AND
 	Thread 4 exiting
 
 #### [3] Bounded-Buffer Producer/Consumer Problem - Multithreading
+
+Useful resource: http://www.csee.wvu.edu/~jdm/classes/cs550/notes/tech/mutex/pc-sem.html
+
 	$> gcc pc.c -lpthread
 	$> ./a.out inputfile outputfile
