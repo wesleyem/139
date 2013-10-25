@@ -17,7 +17,10 @@ AND
 	This is free software; see the source for copying conditions.  There is NO
 	warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-#### Matrix Multiplication - Multiprocessing
+### Assignments
+
+
+#### [1] Matrix Multiplication - Multiprocessing
 	$> gcc mm_proc.c
 	$> ./a.out 1 2 3 4 1 2 3 4 1 3 2 4 1 3 2 4
 	Child pid: 24129
@@ -39,7 +42,7 @@ AND
 	Exiting: 24126
 	Exiting: 24125
 
-#### Matrix Multiplication - Multithreading
+#### [2] Matrix Multiplication - Multithreading
 	$> gcc mm_threads.c -lpthread
 	$> ./a.out 1 2 3 4 1 2 3 4 1 3 2 4 1 3 2 4
 	Thread (0) being created
@@ -66,6 +69,6 @@ AND
 	The second row of the resulting matrix is 16 36
 	Thread 4 exiting
 
-#### Bounded-Buffer Producer/Consumer Problem - Multithreading
+#### [3] Bounded-Buffer Producer/Consumer Problem - Multithreading
 	$> gcc pc.c -lpthread
 	$> ./a.out inputfile outputfile
