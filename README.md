@@ -1,4 +1,4 @@
-# OS Principles Programming Assignments
+# OS Principles
 
 This repo contains various assignments I am working on for my Computer Operating Systems class
 
