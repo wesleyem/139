@@ -2,6 +2,21 @@
 
 This repo contains various assignments I am working on for my Computer Operating Systems class
 
+###### Development environment
+	$> gcc --version
+	gcc (Ubuntu/Linaro 4.6.3-1ubuntu5) 4.6.3
+	Copyright (C) 2011 Free Software Foundation, Inc.
+	This is free software; see the source for copying conditions.  There is NO
+	warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+AND
+
+	$> gcc --version
+	gcc (GCC) 4.4.7 20120313 (Red Hat 4.4.7-3)
+	Copyright (C) 2010 Free Software Foundation, Inc.
+	This is free software; see the source for copying conditions.  There is NO
+	warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
 #### Matrix Multiplication - Multiprocessing
 	$> gcc mm_proc.c
 	$> ./a.out 1 2 3 4 1 2 3 4 1 3 2 4 1 3 2 4
