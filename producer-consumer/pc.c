@@ -50,9 +50,7 @@ int main(int argc, char const *argv[])
 			fclose(inputfile); fclose(outputfile);
 			pthread_exit(NULL);
 		}
-		return 0;
 	}
-	return 0;
 }
 
 void* producer()

@@ -5,17 +5,11 @@ This repo contains various assignments I am working on for my Computer Operating
 ###### Development environment
 	$> gcc --version
 	gcc (Ubuntu/Linaro 4.6.3-1ubuntu5) 4.6.3
-	Copyright (C) 2011 Free Software Foundation, Inc.
-	This is free software; see the source for copying conditions.  There is NO
-	warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 AND
 
 	$> gcc --version
 	gcc (GCC) 4.4.7 20120313 (Red Hat 4.4.7-3)
-	Copyright (C) 2010 Free Software Foundation, Inc.
-	This is free software; see the source for copying conditions.  There is NO
-	warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 ### Assignments
 
@@ -73,5 +67,26 @@ AND
 
 Useful resource: http://www.csee.wvu.edu/~jdm/classes/cs550/notes/tech/mutex/pc-sem.html
 
-	$> gcc pc.c -lpthread
-	$> ./a.out inputfile outputfile
+	$> gcc pc.c -lpthread -Lposix4
+	$> ./a.out input output
+	Hello, I am a producer
+	Hello, I am a consumer
+	Main thread finished
+	$> cat output
+	The bounded-buffer producer/consumer approach can be applied to
+	a variety of different scenarios. In this programming assignment,
+	you will use the bounded-buffer producer/consumer approach to
+	implement a file copying operation. Both a producer thread and
+	a consumer thread work with a buffer of 10 slots. The producer
+	reads a string of 12-byte at a time from the input file (i.e.,
+	this file), and writes it to the next available slot in the
+	buffer. The consumer, on the other hand, reads a 12-byte string
+	from the next filled buffer slot, and writes it to the output
+	file such that the output file becomes a verbatim copy of the
+	input file. Note that the last string may not be exactly 12-byte
+	long. Semaphores are used to enforce the mutually exclusive
+	access to the buffer and the synchronization conditions between
+	the producer and the consumer.
+	$> ./a.out input
+	# of arguments: 2
+	Correct usage: $> ./a.out inputfile outputfile
