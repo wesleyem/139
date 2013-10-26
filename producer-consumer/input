@@ -11,5 +11,4 @@ file such that the output file becomes a verbatim copy of the
 input file. Note that the last string may not be exactly 12-byte 
 long. Semaphores are used to enforce the mutually exclusive 
 access to the buffer and the synchronization conditions between 
-the producer and the consumer. 
-
+the producer and the consumer.
