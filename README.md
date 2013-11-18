@@ -64,6 +64,7 @@ AND
 	Thread 4 exiting
 
 #### [3] Bounded-Buffer Producer/Consumer Problem - Multithreading
+###### Semaphores
 
 Useful resource: http://www.csee.wvu.edu/~jdm/classes/cs550/notes/tech/mutex/pc-sem.html
 
@@ -90,3 +91,6 @@ Useful resource: http://www.csee.wvu.edu/~jdm/classes/cs550/notes/tech/mutex/pc-
 	$> ./a.out input
 	# of arguments: 2
 	Correct usage: $> ./a.out inputfile outputfile
+
+#### [4] Bounded-Buffer Producer/Consumer Problem - Multithreading
+###### Mutex locks and condition variables
