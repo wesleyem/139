@@ -94,3 +94,22 @@ Useful resource: http://www.csee.wvu.edu/~jdm/classes/cs550/notes/tech/mutex/pc-
 
 #### [4] Bounded-Buffer Producer/Consumer Problem - Multithreading
 ###### Mutex locks and condition variables
+
+	$> gcc pc-mutex.c -o pc-mutex -lpthread
+	$> ./pc-mutex input output
+	Hello, I am a consumer
+	Hello, I am a producer
+	Main thread finished
+	$> diff input output
+	$> cat output
+	The synchronization mechanism of mutex-lock and condition-variables plays
+	a pivotal role in monitors. This programming assignment gives you an
+	opportunity to use the mechanism in the bounded-buffer producer-consumer
+	implementation of a file copying operation. Unlike in Program 3 where we
+	need to make sure that the order of two semaphore wait operations is
+	correct, here when a thread has to block, the pthread_cond_wait will
+	automatically release the mutex lock, hence avoiding potential deadlock.
+	Many of the other functionalities in your program 3 can still be reused.
+	This exercise will shed light on the difference between the semaphore based
+	approach and the mutex-lock/condition-variable based approach.
+
