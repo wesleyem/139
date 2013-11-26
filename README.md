@@ -3,6 +3,7 @@
 This repo contains various assignments I am working on for my Computer Operating Systems class
 
 ###### Development environment
+
 	$> gcc --version
 	gcc (Ubuntu/Linaro 4.6.3-1ubuntu5) 4.6.3
 
@@ -15,6 +16,7 @@ AND
 
 
 #### [1] Matrix Multiplication - Multiprocessing
+
 	$> gcc mm_proc.c
 	$> ./a.out 1 2 3 4 1 2 3 4 1 3 2 4 1 3 2 4
 	Child pid: 24129
@@ -37,6 +39,7 @@ AND
 	Exiting: 24125
 
 #### [2] Matrix Multiplication - Multithreading
+
 	$> gcc mm_threads.c -lpthread
 	$> ./a.out 1 2 3 4 1 2 3 4 1 3 2 4 1 3 2 4
 	Thread (0) being created
@@ -113,3 +116,4 @@ Useful resource: http://www.csee.wvu.edu/~jdm/classes/cs550/notes/tech/mutex/pc-
 	This exercise will shed light on the difference between the semaphore based
 	approach and the mutex-lock/condition-variable based approach.
 
+#### [5] Memory-Mapped File I/O - Multiprocessing
