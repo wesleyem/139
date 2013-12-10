@@ -1,0 +1,1 @@
+processes use msgsnd and msgrcv system calls along with message queue to offer services for each other.
