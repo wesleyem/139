@@ -117,3 +117,39 @@ Useful resource: http://www.csee.wvu.edu/~jdm/classes/cs550/notes/tech/mutex/pc-
 	approach and the mutex-lock/condition-variable based approach.
 
 #### [5] Memory-Mapped File I/O - Multiprocessing
+
+	$> gcc memmio.c -o memmio
+	$> ./memmio outfile
+	Child 1 14972 reads:
+	memory mapping a disk file into virtual memory, done via the mmap call,
+	allows file i/o to be treated as routine memory accesses.
+	in this exercise, this file gets memory mapped first. Then two child
+	processes: child-1 and child-2, each will make some changes to the file.
+	
+	Child 1 14972 reads again:
+	MEMORY MAPPING A DISK FILE INTO VIRTUAL MEMORY, DONE VIA THE MMAP CALL,
+	ALLOWS FILE I/O TO BE TREATED AS ROUTINE MEMORY ACCESSES.
+	IN THIS EXERCISE, THIS FILE GETS MEMORY MAPPED FIRST. THEN TWO CHILD
+	PROCESSES: CHILD-1 AND CHILD-2, EACH WILL MAKE SOME CHANGES TO THE FILE.
+	
+	Child 2 14973 reads:
+	MEMORY MAPPING A DISK FILE INTO VIRTUAL MEMORY, DONE VIA THE MMAP CALL,
+	ALLOWS FILE I/O TO BE TREATED AS ROUTINE MEMORY ACCESSES.
+	IN THIS EXERCISE, THIS FILE GETS MEMORY MAPPED FIRST. THEN TWO CHILD
+	PROCESSES: CHILD-1 AND CHILD-2, EACH WILL MAKE SOME CHANGES TO THE FILE.
+	
+	Child 2 14973 reads again:
+	MEMORY MAPPING A DISK FILE INTO VIRTUAL MEMORY, DONE VIA THE MMAP CALL,
+	ALLOWS FILE I/O TO BE TREATED AS ROUTINE MEMORY ACCESSES.
+	IN THIS EXERCISE, THIS FILE GETS MEMORY-MAPPED FIRST. THEN TWO CHILD
+	PROCESSES: CHILD-1 AND CHILD-2, EACH WILL MAKE SOME UPDATES TO THE FILE.
+	
+	Exiting: 14971
+	$> cat outfile
+	MEMORY MAPPING A DISK FILE INTO VIRTUAL MEMORY, DONE VIA THE MMAP CALL,
+	ALLOWS FILE I/O TO BE TREATED AS ROUTINE MEMORY ACCESSES.
+	IN THIS EXERCISE, THIS FILE GETS MEMORY-MAPPED FIRST. THEN TWO CHILD
+	PROCESSES: CHILD-1 AND CHILD-2, EACH WILL MAKE SOME UPDATES TO THE FILE.
+
+#### [6] Message Queue IPC Client/Server
+
