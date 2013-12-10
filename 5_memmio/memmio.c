@@ -17,16 +17,17 @@ int main(int argc, char *argv[])
 	int ready = 0;
 	int fd, status, ret, len;
 	FILE * fp;
-	char * find_ptr;
-	char temp[512];
+	char *find_ptr, *input;
+	char temp[] = "memory mapping a disk file into virtual memory, done via the mmap call,\nallows file i/o to be treated as routine memory accesses.\nin this exercise, this file gets memory mapped first. Then two child\nprocesses: child-1 and child-2, each will make some changes to the file.\n";
 	/*
- * 		Makes sure filename argument is given, creates read/write permissions on file, and initializes file with string.
- * 			*/
+		Makes sure filename argument is given, creates read/write permissions on file, and initializes file with string.
+	*/
 	if (argc == 2)
 	{
-		char *input = "memory mapping a disk file into virtual memory, done via the mmap call,\nallows file i/o to be treated as routine memory accesses.\nin this exercise, this file gets memory mapped first. Then two child\nprocesses: child-1 and child-2, each will make some changes to the file.\n";
+		input = malloc(sizeof(temp));
+		strncpy(input, temp, sizeof(temp));
 		len = strlen(input);
-		fd = open(argv[1], O_CREAT | O_RDWR, (mode_t) S_IRWXU); 
+		fd = open(argv[1], O_CREAT | O_RDWR, S_IRUSR | S_IWUSR); 
 		if (write(fd, input, len) != len)
 		{
 			char * t = "There was an error writing to the file\n";
@@ -51,16 +52,15 @@ int main(int argc, char *argv[])
 			perror("Error in fstat");
 			return 1;
 		}
-
+		/* Map the file into memory for faster manipulation */
 		if ((mm_file = mmap(0, (size_t) buf.st_size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0)) == (void*) -1)
 		{
 			printf("%d\n", mm_file);
 			perror("Error in mmap");
 			return 1;
 		}
-
 		/*
-			Child process execution
+			Child process execution begins here. Child-1 and Child-2.
  		*/
 		if ((pid[0] = fork()) == 0)
 		{
@@ -83,19 +83,40 @@ int main(int argc, char *argv[])
 		}
 		if ((pid[1] = fork()) == 0)
 		{
+			/*
+				NOTE: This method of string replacement only works when the
+				source and destination are the same length!
+			*/
 			sleep(1);
 			printf("Child 2 %d reads: \n%s\n", getpid(), mm_file);
 			strncpy(temp, mm_file, len);
-			if ((find_ptr = strstr(temp, "MEMORY MAPPED")) == NULL)
+			/*
+				Use while loop here to replace ALL occurences of desired
+				substring.
+			*/
+			while (strstr(temp, "MEMORY MAPPED"))
 			{
-				perror("find_ptr is null");
+				if ((find_ptr = strstr(temp, "MEMORY MAPPED")) == NULL)
+				{
+					perror("\'memory mapped\' find_ptr is null");
+				}
+				else
+				{
+					strncpy(find_ptr, "MEMORY-MAPPED", strlen("MEMORY-MAPPED"));
+				}
 			}
-			strncpy(find_ptr, "MEMORY-MAPPED", strlen("MEMORY-MAPPED"));
-			if ((find_ptr = strstr(temp, "CHANGES")) == NULL)
+			while (strstr(temp, "CHANGES"))
 			{
-				perror("find_ptr is null1");	
+				if ((find_ptr = strstr(temp, "CHANGES")) == NULL)
+				{
+					perror("\'changes\' find_ptr is null");
+				}
+				else
+				{
+					strncpy(find_ptr, "UPDATES", strlen("UPDATES"));
+				}
 			}
-			strncpy(find_ptr, "UPDATES", strlen("UPDATES"));
+			/* Copy our temp buffer back into the memory mapped location */
 			strncpy(mm_file, temp, len);
 			printf("Child 2 %d reads again: \n%s\n", getpid(), mm_file);
 			return 0;
@@ -104,6 +125,7 @@ int main(int argc, char *argv[])
 		waitpid(pid[1], &status, 0); waitpid(pid[2], &status, 0);
 		printf("Exiting: %d\n", getpid());
 		close(fd);
+		free(input);
 		return 0;
 	}
 	return 0;
